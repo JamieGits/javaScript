@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 400px;
+            height: 300px;
+            background: #CCCCCC;
+            border: 1px;
+            solid-color: #999999;
+        }
+    </style>
+    <script src="ajax.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            var oBtn = document.getElementsByTagName('input');
+            var i = 0;
+            for (i = 0; i < oBtn.length; i++) {
+                oBtn[i].index = i;
+                oBtn[i].onclick = function () {
+                    ajax(this.index + 1 + '.txt', function (str) {
+                        oDiv.innerHTML = str;
+                    });
+                };
+            };
+        };
+    </script>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+<div id="div1">
+
+</div>
+</body>
+</html>
