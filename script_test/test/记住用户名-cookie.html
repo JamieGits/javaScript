@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function setCookie(name, value, iDay) {
+            var oDate = new Date();
+            oDate.setDate(oDate.getDate() + iDay);
+            document.cookie = name + "=" + value + ";expires=" + oDate;
+        }
+
+        function getCookie(name) {
+            //document.cookie='userName=Jamie; passWord=123456; 张三=12; 李四=13; 王五=14'
+            var arr = document.cookie.split(";");
+            //arr=['userName=Jamie','passWord=123456','张三=12','李四=13','王五=14']
+            var i = 0;
+            for (i = 0; i < arr.length; i++) {
+                var arr1 = arr[i].split("=");
+                if (arr1[0] == name) {
+                    return arr1[1];
+                }
+            }
+            return '';
+        }
+
+        function moveCookie(name) {
+            setCookie(name, '123', -1);
+        }
+
+        window.onload = function () {
+
+            var oForm = document.getElementById('form1');
+            var oUser = document.getElementsByName('user')[0];
+            var oA = document.getElementsByTagName('a')[0];
+            oForm.onsubmit = function () {
+                alert(oUser.value)
+                setCookie('user', oUser.value, 30);
+            };
+            oUser.value = getCookie('user');
+
+            oA.onclick = function () {
+                moveCookie('user');
+                oUser.value = '';
+            }
+        }
+    </script>
+</head>
+<body>
+<form id="form1">
+    用户名:<input type="text" name="user"/>
+    密码:<input type="password" name="pass"/>
+    <input type="submit" value="登录"/>
+    <a href="javaScript:;">清除信息</a>
+</form>
+
+</body>
+</html>
