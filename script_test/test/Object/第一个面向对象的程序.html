@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //this：当前方法属于谁
+        var arr = [23, 11, 1, 9];
+        arr.show = function () {
+            alert(this.length);
+            alert(this);
+        }
+        arr.show();
+
+       var oDiv=document.getElementById('div1');
+       oDiv.onclick=function () {
+           alert(this)
+       }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
