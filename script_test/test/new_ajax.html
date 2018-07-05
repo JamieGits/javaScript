@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="new_ajax.js"></script>
+    <script>
+        ajax('./note.txt', function (str) {
+            alert(str)
+        }, function () {
+            alert('失败')
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
