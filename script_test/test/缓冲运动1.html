@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: red;
+            left: 0;
+            /*left: 500px;*/
+            top: 50px;
+        }
+    </style>
+    <script>
+
+        var timer = null;
+
+        function moveDiv(iTarget) {
+            clearInterval(timer);
+            var oDiv = document.getElementById('div1');
+            timer = setInterval(function () {
+                var iSpeed = (iTarget - oDiv.offsetLeft) / 8;
+                /*//向上取整,使得div运动能够缓慢的到达目标位置
+                iSpeed=Math.ceil(iSpeed);*/
+                //当改变div.style.left使其向左或者向右运动
+                iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+                if (oDiv.offsetLeft == iTarget) {  //判断是否到达
+                    clearInterval(timer);      //已经到达
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';  //到达之前
+                    document.title=oDiv.offsetLeft+'iSpeed:'+iSpeed;
+                }
+            }, 30);
+
+        };
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="移动" onclick="moveDiv(300)"/>
+<div id="div1">
+</div>
+<span style="width: 1px; height: 200px; background: black; position: absolute; left: 300px;top: 0;"></span>
+</body>
+</html>
