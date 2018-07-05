@@ -27,20 +27,26 @@
         window.onload = function () {
             var oDiv = document.getElementById('div1');
             oDiv.onmouseover = function () {
-                startMove(5, 0);
+                startMove(0);
             };
             oDiv.onmouseout = function () {
-                startMove(-5, -100);
+                startMove(-100);
             };
         };
 
         var timer = null;
 
-        function startMove(iSpeed, offsetLeft) {
+        function startMove(iTarget) {
+            var iSpeed = 0;
             var oDiv = document.getElementById('div1');
+            if (oDiv.offsetLeft > iTarget) {
+                iSpeed = -5;
+            } else {
+                iSpeed = 5;
+            }
             clearInterval(timer);
             timer = setInterval(function () {
-                if (oDiv.offsetLeft == offsetLeft) {
+                if (oDiv.offsetLeft == iTarget) {
                     clearInterval(timer)
                 } else {
                     oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
