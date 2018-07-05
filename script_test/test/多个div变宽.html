@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 50px;
+            background: red;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var aDiv = document.getElementsByTagName('div');
+            var i=0;
+            for(i=0;i<aDiv.length;i++){
+                //为了防止多个div共抢一个timer(快速的移入或者移出会导致前面的div不能回到缩小到目标位置)，
+                // 所以给每个div一个timer
+               aDiv[i].timer=null;
+                aDiv[i].onmouseover = function () {
+                    startMove(this,300);
+                };
+                aDiv[i].onmouseout = function () {
+                    startMove(this,100);
+                };
+            }
+
+        };
+
+        function startMove(obj,iTarget) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var iSpeed = (iTarget - obj.offsetWidth) / 8;
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                if (obj.offsetWidth == iTarget) {
+                    clearInterval(obj.timer);
+                } else {
+                    obj.style.width = obj.offsetWidth + iSpeed + 'px';
+                }
+            }, 30);
+        };
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>
