@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="ajax.js"></script>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn1');
+            oBtn.onclick = function () {
+                //ajax能且仅能从服务器读取文件
+                ajax('./abc.txt', function (str) {
+                    alert(str)
+                });
+            };
+        };
+    </script>
+</head>
+<body>
+点击按钮的时候，读取abc.txt文件内容<br/>
+<input id="btn1" type="button" value="读取"/>
+</body>
+</html>
