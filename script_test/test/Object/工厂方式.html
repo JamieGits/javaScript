@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function createPerson(name, sex) {
+            var obj = new Object();
+            obj.name = name;
+            obj.sex = sex;
+            obj.showName = function () {
+                alert('我的名字是:' + this.name);
+            };
+            obj.showSex = function () {
+                alert('我是:' + this.sex + '的');
+            };
+            return obj;
+        };
+        var p1 = createPerson('Jamie', 20);
+        var p2 = createPerson('Janey', 19);
+        p1.showName();
+        p1.showSex();
+        p2.showName();
+        p2.showSex();
+    </script>
+</head>
+<body>
+
+</body>
+</html>
