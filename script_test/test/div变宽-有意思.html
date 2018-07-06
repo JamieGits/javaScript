@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+
+        function getStyle(obj,attr){
+            if(obj.currentStyle){
+                return obj.currentStyle[attr];
+            }else{
+                return getComputedStyle(obj,false)[attr];
+            }
+        }
+
+       /*
+       * 本来是想让div的width变小，当加了div的边框后反而变大了,只是因为oDiv.offsetWidth=oDiv.style.width+solid*2
+       *
+       *
+       * */
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            setInterval(function () {
+                // oDiv.style.width = oDiv.offsetWidth - 1 + 'px';
+                oDiv.style.width=parseInt(getStyle(oDiv,'width'))-1+'px'
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

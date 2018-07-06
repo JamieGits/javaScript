@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: red;
+            left: 0px;
+            top: 50px;
+        }
+    </style>
+    <script>
+
+        var timer = null;
+
+        function moveDiv(iTarget) {
+            clearInterval(timer)
+            var oDiv = document.getElementById('div1');
+            timer = setInterval(function () {
+                var iSpeed = (iTarget - oDiv.offsetLeft) / 10;
+                if (oDiv.offsetLeft >= iTarget) {  //判断是否到达
+                    clearInterval(timer);      //已经到达
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';  //到达之前
+                }
+            }, 30);
+
+        };
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="移动" onclick="moveDiv(300)"/>
+<div id="div1">
+</div>
+//验证div是不是缓冲到了目标位置，结果显示并没有，出了bug，出现bug的原因是iSpeed变成小数，
+//浏览器将其自动去掉小数点，导致未到目标位置，div的iSpeed=0
+<span style="width: 1px; height: 200px; background: black; position: absolute; left: 300px;top: 0;"></span>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: red;
+            left: 0px;
+            top: 50px;
+        }
+    </style>
+    <script>
+        var timer = null;
+        function moveDiv() {
+            clearInterval(timer)
+            var oBtn = document.getElementById('btn1');
+            var oDiv = document.getElementById('div1');
+            timer = setInterval(function () {
+                var iSpeed = 1;
+                if (oDiv.offsetLeft >= 300) {  //判断是否到达
+                    clearInterval(timer);      //已经到达
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';  //到达之前
+                }
+            }, 30);
+
+        };
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="移动" onclick="moveDiv()"/>
+<div id="div1">
+
+</div>
+</body>
+</html>
